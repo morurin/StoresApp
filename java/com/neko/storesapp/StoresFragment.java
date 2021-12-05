@@ -102,6 +102,7 @@ public class StoresFragment extends Fragment implements PopupMenu.OnMenuItemClic
         });
 
 
+
         recyclerStore = view.findViewById(R.id.recyclerId);
         recyclerStore.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -126,38 +127,9 @@ public class StoresFragment extends Fragment implements PopupMenu.OnMenuItemClic
 
 
                             CustomAdapter adapter = new CustomAdapter(storeList);
-                            recyclerStore.setAdapter(adapter);
-                            progressBar.setVisibility(INVISIBLE);
+                            setOnclick(adapter);
 
-                            adapter.setOnLongClickListener(new View.OnLongClickListener() {
-                                @Override
-                                public boolean onLongClick(View v) {
-                                    String storeId = storeList.get(recyclerStore.getChildAdapterPosition(v)).getId();
-                                    TextView textView = requireView().findViewById(R.id.StoreId);
-                                    textView.setText(storeId);
 
-                                    customViewModel.setName(storeList.get(recyclerStore.getChildAdapterPosition(v)).getName());
-                                    customViewModel.setDescription(storeList.get(recyclerStore.getChildAdapterPosition(v)).getDescription());
-                                    showPopup(v);
-                                    viewModelData(storeId);
-                                    return false;
-
-                                }
-                            });
-                            adapter.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    customViewModel.setLatitude(storeList.get(recyclerStore.getChildAdapterPosition(v)).getLatitude());
-                                    customViewModel.setLongitude(storeList.get(recyclerStore.getChildAdapterPosition(v)).getLongitude());
-                                    customViewModel.setName(storeList.get(recyclerStore.getChildAdapterPosition(v)).getName());
-                                    customViewModel.setDescription(storeList.get(recyclerStore.getChildAdapterPosition(v)).getDescription());
-                                    String storeId = storeList.get(recyclerStore.getChildAdapterPosition(v)).getId();
-                                    viewModelData(storeId);
-                                    Navigation.findNavController(requireView()).navigate(R.id.storeMapFragment);
-
-                                }
-                            });
 
                         }
                     }
@@ -190,38 +162,11 @@ public class StoresFragment extends Fragment implements PopupMenu.OnMenuItemClic
                                     }
 
                                     CustomAdapter adapter = new CustomAdapter(storeList);
-                                    recyclerStore.setAdapter(adapter);
-
                                     adapter.notifyDataSetChanged();
                                     swipeRefreshLayout.setRefreshing(false);
-
-                                    adapter.setOnLongClickListener(new View.OnLongClickListener() {
-                                        @Override
-                                        public boolean onLongClick(View v) {
-                                            String storeId = storeList.get(recyclerStore.getChildAdapterPosition(v)).getId();
-                                            TextView textView = requireView().findViewById(R.id.StoreId);
-                                            textView.setText(storeId);
-                                            customViewModel.setName(storeList.get(recyclerStore.getChildAdapterPosition(v)).getName());
-                                            customViewModel.setDescription(storeList.get(recyclerStore.getChildAdapterPosition(v)).getDescription());
+                                    setOnclick(adapter);
 
 
-                                            showPopup(v);
-                                            viewModelData(storeId);
-                                            return false;
-                                        }
-                                    });
-                                    adapter.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-
-                                            customViewModel.setLatitude(storeList.get(recyclerStore.getChildAdapterPosition(v)).getLatitude());
-                                            customViewModel.setLongitude(storeList.get(recyclerStore.getChildAdapterPosition(v)).getLongitude());
-
-                                            String storeId = storeList.get(recyclerStore.getChildAdapterPosition(v)).getId();
-                                            viewModelData(storeId);
-                                            Navigation.findNavController(requireView()).navigate(R.id.storeMapFragment);
-                                        }
-                                    });
 
                                 }
                             }
@@ -231,6 +176,43 @@ public class StoresFragment extends Fragment implements PopupMenu.OnMenuItemClic
         });
 
         return view;
+    }
+
+    public void setOnclick(CustomAdapter adapter){
+
+        recyclerStore.setAdapter(adapter);
+        progressBar.setVisibility(INVISIBLE);
+
+        adapter.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                String storeId = storeList.get(recyclerStore.getChildAdapterPosition(v)).getId();
+                TextView textView = requireView().findViewById(R.id.StoreId);
+                textView.setText(storeId);
+
+                customViewModel.setName(storeList.get(recyclerStore.getChildAdapterPosition(v)).getName());
+                customViewModel.setDescription(storeList.get(recyclerStore.getChildAdapterPosition(v)).getDescription());
+                showPopup(v);
+                viewModelData(storeId);
+                return false;
+
+            }
+        });
+        adapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                customViewModel.setLatitude(storeList.get(recyclerStore.getChildAdapterPosition(v)).getLatitude());
+                customViewModel.setLongitude(storeList.get(recyclerStore.getChildAdapterPosition(v)).getLongitude());
+                customViewModel.setName(storeList.get(recyclerStore.getChildAdapterPosition(v)).getName());
+                customViewModel.setDescription(storeList.get(recyclerStore.getChildAdapterPosition(v)).getDescription());
+                String storeId = storeList.get(recyclerStore.getChildAdapterPosition(v)).getId();
+                viewModelData(storeId);
+                Navigation.findNavController(requireView()).navigate(R.id.storeMapFragment);
+
+            }
+        });
+
     }
 
     public void viewModelData(String id){
@@ -271,7 +253,6 @@ public class StoresFragment extends Fragment implements PopupMenu.OnMenuItemClic
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                progressBar.setVisibility(View.VISIBLE);
 
                                 db.collection("Tiendas")
                                         .document(storeId)
@@ -288,6 +269,7 @@ public class StoresFragment extends Fragment implements PopupMenu.OnMenuItemClic
                                                             .get()
                                                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
 
+                                                                @SuppressLint("NotifyDataSetChanged")
                                                                 @Override
                                                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                                                     if (task.isSuccessful()) {
@@ -305,14 +287,13 @@ public class StoresFragment extends Fragment implements PopupMenu.OnMenuItemClic
                                                                         }
 
                                                                         CustomAdapter adapter = new CustomAdapter(storeList);
-                                                                        recyclerStore.setAdapter(adapter);
+                                                                        setOnclick(adapter);
+
 
 
                                                                     }
                                                                 }
                                                             });
-
-                                                    progressBar.setVisibility(INVISIBLE);
 
 
                                                 }
@@ -344,7 +325,6 @@ public class StoresFragment extends Fragment implements PopupMenu.OnMenuItemClic
                 return false;
         }
     }
-
 
 
 }
