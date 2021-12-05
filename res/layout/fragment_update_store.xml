@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentUpdate"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdateStoreFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="#E3E1EF"
+            android:orientation="vertical"
+            android:padding="60sp"
+            android:paddingTop="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/updateTxtStoreId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_baseline_storefront_24"
+                android:drawablePadding="10sp"
+                android:ems="10"
+                android:fontFamily="@font/roboto_medium"
+                android:hint="Nombre de la tienda"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textColor="#292626" />
+
+            <EditText
+                android:id="@+id/updateTxtOwnerId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30sp"
+                android:drawableLeft="@drawable/ic_baseline_person_24"
+                android:drawablePadding="10sp"
+                android:ems="10"
+                android:fontFamily="@font/roboto_medium"
+                android:hint="Propietario"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textColor="#292626" />
+
+            <Button
+                android:id="@+id/updateBtnId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30sp"
+                android:layout_marginBottom="20sp"
+                android:background="@drawable/rounded_corner"
+                android:fontFamily="@font/roboto_mono_bold"
+                android:text="Actualizar" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="310dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="113dp"
+            android:layout_marginBottom="566dp"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:text="Edita los datos del establecimiento"
+            android:textSize="19sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

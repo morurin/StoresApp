@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.neko.storesapp.ui.home.HomeFragment"
+        android:label="Inicio"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_userDEscriptionFragment"
+            app:destination="@id/userDescriptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newStoreFragment"
+        android:name="com.neko.storesapp.NewStoreFragment"
+        android:label="Añadir establecimientos"
+        tools:layout="@layout/fragment_new_store" />
+    <fragment
+        android:id="@+id/storesFragment"
+        android:name="com.neko.storesapp.StoresFragment"
+        android:label="Establecimientos"
+        tools:layout="@layout/fragment_stores" >
+        <action
+            android:id="@+id/action_storesFragment_to_edit"
+            app:destination="@id/edit"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" />
+        <action
+            android:id="@+id/action_storesFragment_to_storeMapFragment"
+            app:destination="@id/storeMapFragment" />
+        <action
+            android:id="@+id/action_storesFragment_to_newStoreFragment"
+            app:destination="@id/newStoreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.neko.storesapp.MapFragment"
+        android:label="Mapa"
+        tools:layout="@layout/fragment_map" />
+    <fragment
+        android:id="@+id/edit"
+        android:name="com.neko.storesapp.UpdateStoreFragment"
+        android:label="Actualizar datos"
+        tools:layout="@layout/fragment_update_store" >
+        <action
+            android:id="@+id/action_edit_to_storesFragment"
+            app:destination="@id/storesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/storeMapFragment"
+        android:name="com.neko.storesapp.StoreMapFragment"
+        android:label="Ubicación"
+        tools:layout="@layout/fragment_store_map" />
+    <fragment
+        android:id="@+id/userDescriptionFragment"
+        android:name="com.neko.storesapp.userDescriptionFragment"
+        android:label="Describete"
+        tools:layout="@layout/fragment_user_d_escription" />
+
+</navigation>

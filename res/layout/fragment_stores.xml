@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/storeFrame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StoresFragment">
+
+
+    <TextView
+        android:id="@+id/StoreId"
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        tools:ignore="SmallSp" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerId"
+            android:layout_width="match_parent"
+            android:layout_height="699dp"
+            android:layout_gravity="bottom"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:id="@+id/progressBarId2"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addStoreButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="314dp"
+            android:layout_marginTop="619dp"
+            android:layout_marginEnd="41dp"
+            android:layout_marginBottom="56dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_baseline_add_business_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
